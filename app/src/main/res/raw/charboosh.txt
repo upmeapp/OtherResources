@@ -1,0 +1,48 @@
+
+class Person
+{
+    public:
+    int age;
+    double weight;
+    Person *friends;
+    int friendCount;
+    public:
+    void print();
+    Person(int age, double weight);
+    Person(Person other);
+    
+};
+Person::Person(Person other)
+{
+    this->age=other.age;
+    this->weight=other.weight;
+    this->friendCount=other.f...;
+    this->friends=new Person[friendCount];
+    for(int i=0;i<friendCount;i++)
+    {
+        if(other.friends[i]!=NULL)
+         this->friends[i]=new Person(other.friends[i]);
+         -
+    }
+}
+Person::Person(int age, double weight)
+{
+    this->age=age;
+    this->weight=weight;
+    
+}
+void Person::print()
+{
+    cout<<"age="<<age<<" weight="<<weight<<endl;   
+}
+
+int main()
+{
+   Person bibi(69,82.0);
+   bibi.friends=new Person[50];
+   bibi.friendCount=50;
+   bibi.friends[0]=new Person(32,67);
+   Person yair(bibi);  
+   return 0;
+}
+
